@@ -1,18 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+
+class AllMessages extends Component {
+  constructor() {
+    super(); 
+    this.state = {
+      messages: [
+        {
+          name: "Utsab", 
+          content: "Hurrah!!!"
+        }, 
+        {
+          name: "Matt", 
+          content: "Woot!!!"
+        }
+      ]
+    }
+  }
+  
+  render() {
+    let messageComponents = this.state.messages.map((message, i) => {
+      return (
+        <li key={i}>
+          <strong>{message.name}</strong>: 
+          {message.content}
+        </li>
+      );
+    });
+    
+    return (
+      <div>
+        I'm the AllMessages Component!
+        <ul>
+          {messageComponents}
+        </ul>
+      </div>
+    ); 
+  }
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header>
+          <h1>Welcome to Chat App</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AllMessages/>
       </div>
     );
   }
